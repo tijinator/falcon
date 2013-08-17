@@ -1,0 +1,17 @@
+<?php
+/**
+ * Edit Event Form  View
+ * @package Views
+ * @author 	KBedi
+ * @version	1.0
+ */
+?>
+<h3> Event Template : <span class="subhead"><?php echo $this->event->name?></span></h3>
+
+<?php if($this->message!=""):?>
+	<div class="message"><?=$this->message?></div>
+<?php endif ?>
+
+<div class="tundra">
+	<?= $this->form ?>
+</div>

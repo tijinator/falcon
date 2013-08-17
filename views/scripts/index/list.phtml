@@ -1,0 +1,67 @@
+<?php
+/**
+ * Brand List
+ * @package Views
+ * @author 	KBedi
+ * @version	1.0
+ */
+?>
+<?php if(count($this->result)>0) :?>
+		
+		<?php if($this->brandSelected):?>
+			<div class="link"><a href="<?php echo $this->AddNewLink?>" class="link">Add New Event</a></div>
+			<h3> Events for Brand: <span class="subhead"><?php echo $this->brand->name?></span></h3>
+			<ol>
+				<?php 
+				$rowcolor = 0;
+				//List of all Events
+				foreach($this->result as $entry):?> 
+					<div class="gridrow altrow<?php echo $rowcolor?>">
+						<div class="gridcolumn wide">
+							<li><a href="<?php echo APPLICATION_LIVE_PATH?>index/list/event_id/<?php echo $entry['event_id']?>/brand_id/<?php echo $entry['brand_id']?>"><?php echo $entry['name']?></a></li>
+						</div>
+						<div class="gridcolumn">
+							<a href="<?php echo APPLICATION_LIVE_PATH ?>index/editevent/event_id/<?php echo $entry['event_id']?>/brand_id/<?php echo $entry['brand_id']?>" class="link">Edit Event</a>
+						</div>
+						<div class="gridcolumn">
+							<a href="<?php echo APPLICATION_LIVE_PATH ?>index/list/event_id/<?php echo $entry['event_id']?>/brand_id/<?php echo $entry['brand_id']?>" class="link">Show Templates</a>
+						</div>
+					</div>
+					<?php $rowcolor = ($rowcolor)? 0 : 1;?>
+				<?php endforeach?>
+			</ol>
+			<a href="<?php echo $this->ShowBrands?>" class="link">Show Brands</a>
+		<?php elseif($this->eventSelected):?>
+			<a href="<?php echo $this->AddNewLink?>" class="link">Add new template</a>
+			<h3> Template for Event: <span class="subhead"><?php echo $this->event->name?></span></h3>
+			<ol>
+				<?php 
+				//List of all Templates
+				foreach($this->result as $entry):?> 
+					<li><a href="<?php echo APPLICATION_LIVE_PATH ?>index/edit/template_id/<?php echo $entry['template_id']?>"><?php echo $entry['name']?></a> </li>
+				<?php endforeach?>
+			</ol>
+			<a href="<?php echo $this->ShowEvents?>" class="link">Show Events</a>
+		<?php else:?>
+			<h3>List of Brands</h3>
+			<ol>
+				<?php 
+				//List of all Brands
+				foreach($this->result as $entry):?> 
+					<li><a href="<?php echo APPLICATION_LIVE_PATH ?>index/list/brand_id/<?php echo $entry['brand_id']?>"><?php echo $entry['name']?></a> </li>
+				<?php endforeach?>
+			</ol>			
+		<?php endif?>
+
+<?php else:?>
+	<div class="warning">No records were found</div>
+	<?php if($this->brandSelected):?>
+		<div class="link"><a href="<?php echo $this->AddNewLink?>" class="link">Add new Event</a></div>
+	<?php elseif($this->eventSelected):?>
+		<div class="link"><a href="<?php echo $this->AddNewLink?>" class="link">Add new template</a></div>
+	<?php else:?>
+		<div class="link"><a href="" class="link">Add new Brand</a></div>
+	<?php endif?>
+<?php endif?>
+
+

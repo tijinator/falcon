@@ -1,0 +1,18 @@
+<div class="pagehead"> Import File for Smart Index</div>
+
+<div class="message"><?=$this->message?></div>
+<?= $this->form ?>
+<? if($this->invalidRecords){?>
+<h3>Invalid Products in List</h3>
+<table class="grid" width="300" cellspacing="0">
+<thead>
+	<tr>
+		<td class="headrow">Product Number</td>
+		<td class="headrow">Units</td>
+	</tr>
+<thead>
+<tbody>
+	<?= $this->partialLoop('htmltable.phtml', $this->invalidRecords) ?>
+</tbody>
+</table>
+<?}?>

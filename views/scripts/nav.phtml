@@ -1,0 +1,20 @@
+<?php
+/**
+ * Navigation
+ * @package Views
+ * @author 	KBedi
+ * @version	1.0
+ */
+?>
+<?php	
+	$auth = Zend_Auth::getInstance();        
+?>
+<ul style="padding-left: 10px;">
+	<li id="menu_item"><a class="menuitem" href="<?=APPLICATION_LIVE_PATH?>">Home</a></li>
+	<li id="menu_item"><a class="menuitem" href="<?=APPLICATION_LIVE_PATH?>index/list">List of Brands</a></li>
+	<? if (!Zend_Auth::getInstance()->hasIdentity()):?>
+	<li id="menu_item"><a class="menuitem" href="<?=APPLICATION_LIVE_PATH?>user/login">Login</a></li>
+	<?else:?>
+	<li id="menu_item"><a class="menuitem" href="<?=APPLICATION_LIVE_PATH?>user/logout">Logout</a></li>
+	<?endif?>
+</ul>

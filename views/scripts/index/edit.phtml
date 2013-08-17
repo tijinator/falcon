@@ -1,0 +1,44 @@
+<?php
+/**
+ * Edit Template View
+ * @package Views
+ * @author 	KBedi
+ * @version	1.0
+ */
+?>
+<?php // setup required dojo elements:
+$this->dojo()->enable()
+		->setDjConfigOption('parseOnLoad', true)
+		->requireModule('dojo.parser')
+		->requireModule('dijit.Editor');
+?>
+
+<h3> Event Template : <span class="subhead"><?php echo $this->template->name?></span></h3>
+<?php if($this->template->template_id > 0) {?>
+<div style="float: right;width: 500px;">
+	<h4> Affiliate ID (aid): <span class="message"><?php echo $this->brand->brand_id?> (<?php echo $this->brand->name?>)</span></h4>
+	<h4> Event ID (eid): <span class="message"><?php echo $this->event->event_id?> (<?php echo $this->event->name?>)</span></h4>
+	<?php 	  
+		if($this->template->template_type_id!= 2)
+		{
+			$url_string="";  	
+			preg_match_all("(\%\%[A-Z0-9\.]+\%\%)",$this->template->body_text,$matches);
+		    foreach($matches[0] as $var){
+		    	$var = str_replace("%%","",$var);
+		    	$url_string .= "&$var=[".strtolower($var)."]";
+		    }
+		    ?>
+		    <h4> Service URL: <span class="message"><?php echo APPLICATION_LIVE_PATH?>ebm/ebmtrigger1?aid=<?php echo $this->brand->brand_id?>&eid=<?php echo $this->event->event_id?>&&email=[email]&html=1<?php echo $url_string?></span></h4>
+		<?php 
+		}
+		?>
+	<h4> Akamai Directory: <span class="message">http://images.vitaminimages.com/<?php echo $this->brand->code?>/mailing/e<?php echo $this->event->event_id?>t<?php echo $this->template->template_id?></span></h4>
+</div>
+<?php }?>
+<?php if($this->message!=""):?>
+	<div class="message"><?=$this->message?></div>
+<?php endif ?>
+
+<div class="tundra">
+	<?= $this->form ?>
+</div>

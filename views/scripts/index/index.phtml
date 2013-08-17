@@ -1,0 +1,19 @@
+<?php
+/**
+ * Default view page
+ * @package Views
+ * @author 	KBedi
+ * @version	1.0
+ */
+?>
+<div class="pagehead">Falcon - Home</div>
+<div class="pagehead">&nbsp;</div>
+<? if($this->user):?>
+	<div class="text">Welcome, <?=$this->user['givenname'][0]?> <?=$this->user['sn'][0]?>.</div>
+	<br /><br />
+<?endif?>
+
+<div class="text"> This is the home of the falcon. A tool to deploy EBMs (Event based emails) for NBTY websites.</div>
+<div class="text">&nbsp;</div>
+<div class="text"> To start using it please click on list of brands on the left.</div>
+

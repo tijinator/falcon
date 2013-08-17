@@ -1,0 +1,60 @@
+<?php
+/**
+ * Default Layout of application
+ * @package Layout
+ * @author      KBedi
+ * @version     1.0
+ */
+?>
+<?= $this->doctype() ?>
+
+<html>
+<head>  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <?php echo $this->headTitle(' - Falcon') ?>
+    
+        <?php if ($this->dojo()->isEnabled()){
+                            $this->dojo()->setLocalPath(APPLICATION_LIVE_PATH."js/dojo/dojo.js")
+                                                ->addStyleSheetModule('dijit.themes.tundra');
+                            echo $this->dojo();
+                   }
+        ?> 
+        
+        <?php echo $this->headLink()->appendStylesheet(APPLICATION_LIVE_PATH."js/dijit/themes/tundra/tundra.css") ?> 
+        <?php echo $this->headLink()->appendStylesheet(APPLICATION_LIVE_PATH."application.css") ?>  
+</head>
+<body>
+<table id="bodystructure" cellspacing="0" cellpadding="0" height="100%">
+        <tr>
+      <td colspan="4">
+        <div id="banner">
+                        <img src="<?=APPLICATION_LIVE_PATH?>graphics/falcon.gif" />  
+        </div>
+      </td>
+    </tr>
+    <tr height="100%">
+      <!-- left navigation cell -->
+      <td width="10%" valign="top" height="100%">
+                <div id="nav">
+                <?= $this->render('nav.phtml') ?>
+                </div>
+      </td>
+
+      <td width="0%" id="gutter">&nbsp;</td>
+
+      <!-- right content cell -->
+      <td width="90%" id="content" valign="top">
+        <span id="content_html">
+                        <?php echo $this->layout()->content ?>
+                        <?php echo $this->inlineScript() ?>
+        </span>
+      </td>
+
+      <td width="0%"  valign="top">
+      </td>
+
+    </tr>
+</table>
+</body>
+</html>
